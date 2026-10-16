@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="id" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detail Rekap Guru</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/detail_guru.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+    <div class="detail-container">
+        <a href="/" class="btn-back">Kembali ke Absensi</a>
+
+        <div class="profile-card-layout">
+            
+            <!-- BAGIAN KIRI: FOTO PROFIL & BIO GURU -->
+            <div class="profile-left">
+                <div class="avatar-wrapper">
+                    <!-- Tombol Upload Emoji Kamera -->
+                    <label for="inputFotoGuru" class="btn-add-photo" title="Ubah Foto">📷</label>
+                    <!-- Input File disembunyikan pakai style inline agar pasti hilang -->
+                    <input type="file" id="inputFotoGuru" accept="image/*" onchange="pratinjauFotoGuru(event)" style="display: none;">
+
+                    <img id="imgFotoGuru" src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23a78bfa'><path d='M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z'/></svg>" alt="Foto Guru">
+                </div>
+                <h2 id="detailNamaGuru">Memuat...</h2>
+                <p id="detailRoleGuru">Status</p>
+                
+                <div class="gender-badge" id="detailGenderGuru" style="margin-top: 10px; padding: 6px 12px; background: rgba(255,255,255,0.1); border-radius: 20px; font-size: 14px; display: inline-block;">
+                    👤 Jenis Kelamin: -
+                </div>
+            </div>
+
+            <!-- BAGIAN KANAN: STATISTIK & GRAFIK -->
+            <div class="stats-right">
+                <div class="stats-header">
+                    <h3>📊 Kehadiran Tenaga Pendidik</h3>
+                    <span class="badge-month" id="namaBulanGuru">Bulan Ini</span>
+                </div>
+
+                <div class="progress-section" style="margin-bottom: 20px;">
+                    <div class="progress-info" style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+                        <span>Persentase Kehadiran</span>
+                        <strong id="textPersentaseGuru">0%</strong>
+                    </div>
+                    <div class="progress-bar-bg" style="width: 100%; height: 10px; background: rgba(255,255,255,0.1); border-radius: 5px; overflow: hidden;">
+                        <div id="barFillGuru" style="width: 0%; height: 100%; background: #10b981; transition: width 0.5s ease;"></div>
+                    </div>
+                </div>
+
+                <div class="detail-stats-grid">
+                    <div class="detail-stat-card card-tepat">
+                        <span class="stat-icon">✅</span>
+                        <div class="stat-data">
+                            <span class="label">Hadir</span>
+                            <span class="value" id="valTepatGuru">0 Hari</span>
+                        </div>
+                    </div>
+
+                    <div class="detail-stat-card card-telat">
+                        <span class="stat-icon">⚠️</span>
+                        <div class="stat-data">
+                            <span class="label">Terlambat</span>
+                            <span class="value" id="valTelatGuru">0 Hari</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="chart-box" style="margin-top: 25px; background: rgba(0, 0, 0, 0.2); padding: 15px; border-radius: 12px;">
+                    <h4 style="margin-bottom: 10px; font-size: 15px; color: #cbd5e1;">📈 Grafik Kehadiran Guru</h4>
+                    <canvas id="grafikKehadiranGuru" style="width:100%; max-height:220px;"></canvas>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/detail_guru.js') }}"></script>
+</body>
+</html>

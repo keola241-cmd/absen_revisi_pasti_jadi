@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="id" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detail Rekap Siswa</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/detail_siswa.css') }}">
+    <!-- CDN Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+    <div class="detail-container">
+        <!-- TOMBOL KEMBALI -->
+        <button onclick="history.back()" class="btn-back">← Kembali</button>
+
+        <div class="profile-card-layout">
+            
+            <!-- BAGIAN KIRI: FOTO PROFIL, BIO & GENDER -->
+            <div class="profile-left">
+                <div class="avatar-wrapper">
+                    <label for="inputFoto" class="btn-add-photo" title="Ubah Foto">📷</label>
+                    <input type="file" id="inputFoto" accept="image/*" onchange="pratinjauFoto(event)">
+
+                    <img id="imgFotoSiswa" src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23a78bfa'><path d='M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z'/></svg>" alt="Foto Siswa">
+                </div>
+                <h2 id="detailNamaSiswa">Memuat...</h2>
+                <p id="detailKelasSiswa">Kelas -</p>
+                
+                <!-- INFO JENIS KELAMIN -->
+                <div class="gender-badge" id="detailGenderSiswa" style="margin-top: 10px; padding: 6px 12px; background: rgba(255,255,255,0.1); border-radius: 20px; font-size: 14px; display: inline-block;">
+                    👤 Jenis Kelamin: -
+                </div>
+            </div>
+
+            <!-- BAGIAN KANAN: STATISTIK & GRAFIK -->
+            <div class="stats-right">
+                <div class="stats-header">
+                    <h3>📊 Statistik Kehadiran</h3>
+                    <span class="badge-month" id="namaBulan">Bulan Ini</span>
+                </div>
+
+                <!-- PERSENTASE KEHADIRAN & BAR -->
+                <div class="progress-section" style="margin-bottom: 20px;">
+                    <div class="progress-info" style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+                        <span>Persentase Kehadiran</span>
+                        <strong id="textPersentase">0%</strong>
+                    </div>
+                    <div class="progress-bar-bg" style="width: 100%; height: 10px; background: rgba(255,255,255,0.1); border-radius: 5px; overflow: hidden;">
+                        <div id="barFill" style="width: 0%; height: 100%; background: #10b981; transition: width 0.5s ease;"></div>
+                    </div>
+                </div>
+
+                <!-- GRID 4 KARTU STATISTIK KEHADIRAN -->
+                <div class="detail-stats-grid">
+                    <div class="detail-stat-card card-tepat">
+                        <span class="stat-icon">✅</span>
+                        <div class="stat-data">
+                            <span class="label">Tepat Waktu</span>
+                            <span class="value" id="valTepat">0 Hari</span>
+                        </div>
+                    </div>
+
+                    <div class="detail-stat-card card-telat">
+                        <span class="stat-icon">⚠️</span>
+                        <div class="stat-data">
+                            <span class="label">Terlambat</span>
+                            <span class="value" id="valTelat">0 Hari</span>
+                        </div>
+                    </div>
+
+                    <div class="detail-stat-card card-izin">
+                        <span class="stat-icon">📑</span>
+                        <div class="stat-data">
+                            <span class="label">Izin / Sakit</span>
+                            <span class="value" id="valIzin">0 Hari</span>
+                        </div>
+                    </div>
+
+                    <!-- PENGGANTIAN ALPA MENJADI TIDAK MASUK -->
+                    <div class="detail-stat-card card-alpha">
+                        <span class="stat-icon">❌</span>
+                        <div class="stat-data">
+                            <span class="label">Tidak Masuk</span>
+                            <span class="value" id="valAlpha">0 Hari</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CONTAINER GRAFIK CHART.JS -->
+                <div class="chart-box" style="margin-top: 25px; background: rgba(0, 0, 0, 0.2); padding: 15px; border-radius: 12px;">
+                    <h4 style="margin-bottom: 10px; font-size: 15px; color: #cbd5e1;">📈 Grafik Kehadiran</h4>
+                    <canvas id="grafikKehadiran" style="width:100%; max-height:220px;"></canvas>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+    <!-- JS DETAIL SISWA -->
+    <script src="{{ url_for('static', filename='js/detail_siswa.js') }}"></script>
+</body>
+</html>

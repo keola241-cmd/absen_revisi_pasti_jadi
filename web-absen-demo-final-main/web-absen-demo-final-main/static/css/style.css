@@ -1,0 +1,676 @@
+[data-theme="dark"] {
+    --bg-main: #0a0c1b;
+    --card-bg: #12142d;
+    --card-scanner: #18193f;
+    --text-title: #b197fc;
+    --text-sub: #ffffff;
+    --text-heading: #ffffff;
+    --item-bg: #181a38;
+    --border-color: #2e3267;
+    --sidebar-bg: #101229;
+    --btn-bg: #222554;
+    --btn-primary: #8b5cf6;
+    --btn-primary-hover: #7c3aed;
+    --scanner-box-bg: #a3a3a3;
+    --table-header: #1c1f4c;
+    --badge-success: #10b981;
+    --badge-warning: #f59e0b;
+    --badge-danger: #ef4444;
+    --stat-card-bg: #181a40;
+    --input-bg: #101229;
+}
+
+[data-theme="light"] {
+    --bg-main: #f8fafc;
+    --card-bg: #ffffff;
+    --card-scanner: #ffffff;
+    --text-title: #4f46e5;
+    --text-sub: #1e293b;
+    --text-heading: #0f172a;
+    --item-bg: #f1f5f9;
+    --border-color: #cbd5e1;
+    --sidebar-bg: #ffffff;
+    --btn-bg: #e2e8f0;
+    --btn-primary: #4f46e5;
+    --btn-primary-hover: #4338ca;
+    --scanner-box-bg: #e2e8f0;
+    --table-header: #e2e8f0;
+    --badge-success: #059669;
+    --badge-warning: #d97706;
+    --badge-danger: #dc2626;
+    --stat-card-bg: #f1f5f9;
+    --input-bg: #ffffff;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+    transition: background 0.3s ease, background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+body {
+    background: var(--bg-main) !important;
+    background-attachment: fixed !important;
+    color: var(--text-sub);
+    min-height: 100vh;
+    padding: 1.5rem;
+    position: relative;
+    overflow-x: hidden;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    margin-bottom: 1.5rem;
+}
+
+.menu-btn {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    background: var(--btn-bg);
+    border: 2px solid var(--border-color);
+    border-radius: 12px;
+    padding: 8px 12px;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    z-index: 10;
+}
+
+.menu-btn span {
+    width: 24px;
+    height: 3px;
+    background: var(--text-heading);
+    border-radius: 2px;
+}
+
+.header-title {
+    text-align: center;
+}
+
+.header-title h2 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text-sub);
+}
+
+.header-title h1 {
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: var(--text-title);
+}
+
+.jam-digital-box {
+    margin-top: 4px;
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: var(--badge-success);
+    background: var(--card-bg);
+    padding: 4px 12px;
+    border-radius: 20px;
+    display: inline-block;
+    border: 1px solid var(--border-color);
+}
+
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: -300px;
+    width: 280px;
+    height: 100%;
+    background: var(--sidebar-bg);
+    box-shadow: 4px 0 15px rgba(0, 0, 0, 0.2);
+    z-index: 100;
+    transition: left 0.3s ease;
+    padding: 2rem 1.2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+    overflow-y: auto;
+}
+
+.sidebar.active {
+    left: 0;
+}
+
+.sidebar h3 {
+    font-size: 1.1rem;
+    color: var(--text-heading);
+    border-bottom: 2px solid var(--border-color);
+    padding-bottom: 0.5rem;
+    margin-top: 0.5rem;
+}
+
+.nav-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.nav-item {
+    padding: 0.8rem 1rem;
+    background: var(--btn-bg);
+    border-radius: 12px;
+    cursor: pointer;
+    font-weight: 600;
+    color: var(--text-heading);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: 1px solid var(--border-color);
+}
+
+.nav-item:hover, .nav-item.active {
+    background: var(--btn-primary);
+    color: #ffffff;
+}
+
+.theme-switch-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.theme-switch-wrapper span {
+    color: var(--text-heading);
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+
+.volume-control-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    color: var(--text-heading);
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+
+.volume-control-wrapper input[type="range"] {
+    width: 100%;
+    height: 6px;
+    border-radius: 5px;
+    background: var(--border-color);
+    outline: none;
+    accent-color: var(--btn-primary);
+    cursor: pointer;
+}
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 26px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-color: #ccc;
+    transition: .4s;
+    border-radius: 34px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 18px;
+    width: 18px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: .4s;
+    border-radius: 50%;
+}
+
+input:checked + .slider {
+    background-color: var(--btn-primary);
+}
+
+input:checked + .slider:before {
+    transform: translateX(24px);
+}
+
+.overlay {
+    position: fixed;
+    top: 0; left: 0; width: 100vw; height: 100vh;
+    background: rgba(0,0,0,0.5);
+    display: none;
+    z-index: 99;
+}
+
+.overlay.active {
+    display: block;
+}
+
+.page-view {
+    display: none;
+}
+
+.page-view.active {
+    display: block;
+}
+
+.container {
+    display: flex;
+    flex-direction: row;
+    gap: 1.5rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.panel-scanner {
+    flex: 1;
+    background: var(--card-scanner);
+    border-radius: 24px;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid var(--border-color);
+}
+
+.panel-scanner h3, .panel-daftar h3, .section-title {
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    text-align: center;
+    width: 100%;
+    color: var(--text-heading);
+}
+
+/* Styling Tambahan untuk Tabel Matriks dan Rekap Tanggal */
+.custom-table {
+    width: 100%;
+    border-collapse: collapse;
+    color: var(--text-heading);
+    font-size: 0.9rem;
+}
+
+.custom-table th, .custom-table td {
+    padding: 10px 12px;
+    border: 1px solid var(--border-color);
+    text-align: center;
+}
+
+.custom-table th {
+    background-color: rgba(139, 92, 246, 0.2);
+    color: var(--text-title);
+    font-weight: 600;
+}
+
+.custom-table tr:hover {
+    background-color: rgba(255, 255, 255, 0.03);
+}
+
+.badge {
+    padding: 4px 8px;
+    border-radius: 8px;
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+.badge-success {
+    background: rgba(16, 185, 129, 0.2);
+    color: #34d399;
+    border: 1px solid rgba(16, 185, 129, 0.4);
+}
+
+.badge-warning {
+    background: rgba(245, 158, 11, 0.2);
+    color: #fbbf24;
+    border: 1px solid rgba(245, 158, 11, 0.4);
+}
+
+#reader video {
+    transform: scaleX(-1) !important;
+    -webkit-transform: scaleX(-1) !important;
+    border-radius: 16px;
+}
+
+#reader {
+    width: 100%;
+    border-radius: 16px;
+    overflow: hidden;
+    border: none !important;
+    background: var(--scanner-box-bg);
+}
+
+#pesan_hasil {
+    margin-top: 1rem;
+    font-size: 1rem;
+    font-weight: 600;
+    text-align: center;
+    padding: 0.8rem 1rem;
+    border-radius: 12px;
+    background: rgba(0,0,0,0.05);
+    width: 100%;
+    color: var(--text-heading);
+    border: 1px solid var(--border-color);
+}
+
+.panel-daftar {
+    flex: 1.2;
+    display: flex;
+    flex-direction: column;
+}
+
+.daftar-header-box {
+    background: var(--card-bg);
+    border-radius: 30px;
+    padding: 0.8rem;
+    text-align: center;
+    margin-bottom: 1rem;
+    border: 1px solid var(--border-color);
+}
+
+#daftar_absen {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    max-height: 480px;
+    overflow-y: auto;
+}
+
+/* ==========================================
+   STYLING DESAIN CAREER MODE CALENDAR (UI MOCKUP)
+   ========================================== */
+.main-calendar-title {
+    text-align: center;
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 1.2rem;
+    letter-spacing: 1px;
+}
+
+.tap-bar-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1.5rem;
+    gap: 1rem;
+}
+
+.scroll-indicator-line {
+    position: absolute;
+    top: -8px;
+    left: 0;
+    width: 120px;
+    height: 4px;
+    background: #7c3aed;
+    border-radius: 4px;
+}
+
+.sub-menu-bar {
+    display: flex;
+    gap: 0.8rem;
+    overflow-x: auto;
+    padding-bottom: 6px;
+    scroll-behavior: smooth;
+    flex: 1;
+}
+
+.sub-menu-bar::-webkit-scrollbar {
+    height: 4px;
+}
+.sub-menu-bar::-webkit-scrollbar-thumb {
+    background: var(--btn-primary);
+    border-radius: 4px;
+}
+
+.tab-btn {
+    padding: 0.7rem 1.4rem;
+    background: #2a224a;
+    border: 1px solid #3d346b;
+    border-radius: 14px;
+    color: #ffffff;
+    font-weight: 600;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    white-space: nowrap;
+}
+
+.tab-btn.active {
+    background: #4c3785;
+    border-color: #8b5cf6;
+    box-shadow: 0 0 12px rgba(139, 92, 246, 0.4);
+}
+
+.action-buttons-group {
+    display: flex;
+    gap: 0.6rem;
+}
+
+.icon-btn {
+    width: 42px;
+    height: 42px;
+    border-radius: 12px;
+    border: 1px solid #3d346b;
+    background: #2a224a;
+    color: white;
+    font-size: 1.2rem;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.icon-btn:hover {
+    background: #8b5cf6;
+}
+
+/* KOTAK UTAMA KALENDER */
+.calendar-main-box {
+    position: relative;
+    background: #181836;
+    border: 2px solid #2e2f5d;
+    border-radius: 28px;
+    padding: 1.8rem;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+    min-height: 480px;
+}
+
+.calendar-header-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.month-year-title {
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: #ffffff;
+    text-align: center;
+    flex: 1;
+}
+
+.btn-pencil-marker {
+    background: transparent;
+    border: 2px solid transparent;
+    font-size: 1.6rem;
+    cursor: pointer;
+    padding: 6px 10px;
+    border-radius: 12px;
+    transition: 0.2s;
+}
+
+.btn-pencil-marker.active {
+    background: rgba(239, 68, 68, 0.2);
+    border-color: #ef4444;
+    transform: scale(1.1);
+}
+
+/* GRID TANGGAL (CARDS) */
+.calendar-grid-tiles {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.tile-card {
+    background: #2c254b;
+    border: 1px solid #3f366b;
+    border-radius: 18px;
+    min-height: 95px;
+    padding: 0.8rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    cursor: pointer;
+    position: relative;
+    transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.tile-card:hover {
+    transform: translateY(-3px);
+    border-color: #8b5cf6;
+}
+
+.tile-card.marked-holiday {
+    background: #ff5252 !important;
+    border-color: #ff7979 !important;
+    box-shadow: 0 0 15px rgba(255, 82, 82, 0.5);
+}
+
+.tile-card.weekend {
+    background: #1f1d3a;
+    opacity: 0.8;
+}
+
+.tile-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: 700;
+    font-size: 0.9rem;
+}
+
+.tile-date {
+    font-size: 1.1rem;
+    color: #ffffff;
+}
+
+.tile-badge-info {
+    font-size: 0.7rem;
+    padding: 2px 6px;
+    border-radius: 6px;
+    background: rgba(255,255,255,0.15);
+}
+
+.tile-body-stats {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #cbd5e1;
+    margin-top: 4px;
+}
+
+/* TOMBOL NAVIGASI BULAT MAJU MUNDUR */
+.nav-circle-btn {
+    position: absolute;
+    bottom: 15px;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: #0f1026;
+    border: 2px solid #2e2f5d;
+    color: white;
+    font-size: 0.9rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.nav-circle-btn:hover {
+    background: #8b5cf6;
+}
+
+.btn-prev { left: 18px; }
+.btn-next { right: 18px; }
+
+/* MODAL & REKAP TABEL */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.7);
+    z-index: 200;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal.active { display: flex; }
+
+.modal-content {
+    background: #141634;
+    padding: 2rem;
+    border-radius: 20px;
+    width: 90%;
+    border: 1px solid #272a5a;
+    color: white;
+}
+
+.modal-content input, .modal-content select {
+    width: 100%;
+    padding: 0.8rem;
+    border-radius: 10px;
+    border: 1px solid #272a5a;
+    background: #101229;
+    color: white;
+    margin-bottom: 1rem;
+    outline: none;
+}
+
+.modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.8rem;
+}
+
+.btn-fullscreen {
+    position: fixed;
+    top: 15px;
+    right: 15px;
+    background-color: var(--card-bg);
+    color: var(--text-heading);
+    border: 2px solid var(--border-color);
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-weight: 700;
+    font-size: 13px;
+    cursor: pointer;
+    z-index: 1000;
+}
+
+@media print {
+    body * { visibility: hidden; }
+    #cetakAreaSiswa, #cetakAreaSiswa * { visibility: visible; }
+    #cetakAreaSiswa {
+        position: absolute; left: 0; top: 0; width: 100%;
+        background: #fff !important; color: #000 !important;
+    }
+}

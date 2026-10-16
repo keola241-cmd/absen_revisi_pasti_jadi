@@ -1,0 +1,56 @@
+@import url('detail_siswa.css');
+
+.card-tepat {
+    background: rgba(16, 185, 129, 0.1);
+    border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+.card-telat {
+    background: rgba(245, 158, 11, 0.1);
+    border: 1px solid rgba(245, 158, 11, 0.3);
+}
+
+.avatar-wrapper {
+    position: relative;
+    width: 110px;
+    height: 110px;
+    margin: 0 auto 15px;
+}
+
+.avatar-wrapper img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #a78bfa;
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+/* Sembunyikan input file asli */
+.avatar-wrapper input[type="file"] {
+    display: none !important;
+}
+
+/* Tombol Emoji Kamera */
+.btn-add-photo {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: #a78bfa;
+    color: white;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 14px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    z-index: 2;
+    transition: transform 0.2s ease;
+}
+
+.btn-add-photo:hover {
+    transform: scale(1.1);
+}
